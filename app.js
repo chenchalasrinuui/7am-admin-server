@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 
 var authCtrl = require('./controller/authCtrl')
 var app = express();
-
+app.use(cors())
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
