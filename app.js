@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var authCtrl = require('./controller/authCtrl')
+var cors = require('cors')
 var app = express();
 app.use(cors())
 // view engine setup
