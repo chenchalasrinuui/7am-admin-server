@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router()
 
-var { saveVendorService } = require('../service/vendorService')
+var { saveVendorService, getVendorService } = require('../service/vendorService')
 
 router.post('/save', async function (req, res, next) {
     try {
@@ -16,8 +16,9 @@ router.put('/update', function (req, res, next) {
 
 })
 
-router.get("/get", function (req, res, next) {
-
+router.get("/get", async function (req, res, next) {
+    var result = await getVendorService();
+    res.send(result)
 })
 
 router.delete("/delete", function (req, res, next) {

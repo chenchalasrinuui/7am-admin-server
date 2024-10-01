@@ -1,3 +1,4 @@
+const getDB = require("../common/getDB");
 
 
 async function saveVendorDAO(data) {
@@ -7,8 +8,11 @@ async function saveVendorDAO(data) {
     return result;
 }
 
-function getVendorDAO() {
-
+async function getVendorDAO() {
+    var db = await getDB()
+    var collection = db.collection("vendors")
+    var result = await collection.find({}).toArray()
+    return result;
 }
 
 function updateVendorDAO() {
