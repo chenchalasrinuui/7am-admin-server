@@ -1,6 +1,6 @@
 const getDB = require("../common/getDB");
-
-
+var mongo = require('mongodb')
+var ObjectId = mongo.ObjectId
 async function saveVendorDAO(data) {
     var db = await getDB()
     var collection = db.collection('vendors')
@@ -15,8 +15,11 @@ async function getVendorDAO() {
     return result;
 }
 
-function updateVendorDAO() {
-
+async function updateVendorDAO(data, id) {
+    var db = await getDB()
+    var collection = db.collection("vendors")
+    var result = await collection.updateOne({ _id: ObjectId.createFromHexString(id) }, { $set: data })
+    return result;
 }
 
 function deleteVendorDAO() {
