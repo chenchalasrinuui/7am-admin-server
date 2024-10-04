@@ -1,4 +1,4 @@
-var { saveVendorDAO, getVendorDAO, updateVendorDAO } = require('../dao/vendorDAO')
+var { saveVendorDAO, getVendorDAO, updateVendorDAO, deleteVendorDAO } = require('../dao/vendorDAO')
 async function saveVendorService(req) {
     var data = req.body.data
     var result = await saveVendorDAO(data)
@@ -17,8 +17,10 @@ async function updateVendorService(req) {
     return result;
 }
 
-function deleteVendorService() {
-
+async function deleteVendorService(req) {
+    var id = req.params.id
+    var result = await deleteVendorDAO(id)
+    return result;
 }
 
 module.exports = {

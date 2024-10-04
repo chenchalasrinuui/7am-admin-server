@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router()
 
-var { saveVendorService, getVendorService, updateVendorService } = require('../service/vendorService')
+var { saveVendorService, getVendorService, updateVendorService, deleteVendorService } = require('../service/vendorService')
 
 router.post('/save', async function (req, res, next) {
     try {
@@ -32,8 +32,13 @@ router.get("/get", async function (req, res, next) {
 
 })
 
-router.delete("/delete", function (req, res, next) {
-
+router.delete("/delete/:id", async function (req, res, next) {
+    try {
+        var result = await deleteVendorService(req)
+        res.send(result)
+    } catch (ex) {
+        res.send(ex?.message)
+    }
 })
 
 module.exports = router;

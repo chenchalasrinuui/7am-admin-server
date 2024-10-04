@@ -22,8 +22,11 @@ async function updateVendorDAO(data, id) {
     return result;
 }
 
-function deleteVendorDAO() {
-
+async function deleteVendorDAO(id) {
+    var db = await getDB()
+    var collection = db.collection('vendors')
+    var result = await collection.deleteOne({ _id: ObjectId.createFromHexString(id) })
+    return result;
 }
 
 module.exports = {
